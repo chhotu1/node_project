@@ -31,7 +31,7 @@ db.once('open', () => {
     setRoutes(app)
     app.get( "/", ( req:express.Request, res :express.Response  ) => {
         // return res.json({ message:"welcome" });
-        res.render( "index" ); 
+        res.render( "/index" ); 
     });
    
     // app.listen( port, () => {

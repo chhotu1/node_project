@@ -29,10 +29,14 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
     setRoutes(app)
-    app.get( "/", ( req:express.Request, res :express.Response  ) => {
-        // return res.json({ message:"welcome" });
-        res.render( "/index" ); 
-    });
+    app.get('/home',(req,res)=>{
+        res.render( "/index" );
+
+    })
+    // app.get( "/home", ( req:express.Request, res :express.Response  ) => {
+    //     // return res.json({ message:"welcome" });
+    //     res.render( "/index" ); 
+    // });
    
     // app.listen( port, () => {
     //     console.log( `server started at http://localhost:${ port }` );

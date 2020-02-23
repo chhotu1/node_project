@@ -7,8 +7,8 @@ import * as morgan from 'morgan';
 import * as nodemailer from 'nodemailer'; 
 import * as path from 'path';
 const app = express();
-
-const port = 8080;
+app.set('port', (process.env.PORT || 3002));
+// const port = 8080;
 
 app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(bodyParser.json());
@@ -34,8 +34,12 @@ db.once('open', () => {
         res.render( "index" ); 
     });
    
-    app.listen( port, () => {
-        console.log( `server started at http://localhost:${ port }` );
+    // app.listen( port, () => {
+    //     console.log( `server started at http://localhost:${ port }` );
+    // });
+
+    app.listen(app.get('port'), () => {
+        console.log('server listening on port ' + app.get('port'));
     });
 
     

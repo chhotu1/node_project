@@ -31,20 +31,12 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
+
 db.once('open', () => {
     console.log('Connected to MongoDB');
     setRoutes(app)
     app.get('/',(req,res)=>{
         res.render( "index" );
-        _favicon(req, res, function onNext (err) {
-            if (err) return console.error(err)
-        
-            // continue to process the request here, etc.
-        
-            res.statusCode = 404
-            res.end('oops')
-          })
-
     })
    
     // app.get( "/home", ( req:express.Request, res :express.Response  ) => {

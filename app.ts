@@ -19,7 +19,8 @@ app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.use('/assets',express.static('assets'));
 app.set('views', path.join(__dirname, 'views'));
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+// app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 //connection to database
 mongoose.connect(config.dbUrl);
@@ -32,8 +33,8 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
     setRoutes(app)
-    app.get('/home',(req,res)=>{
-        res.render( "/index" );
+    app.get('/',(req,res)=>{
+        res.render( "index" );
 
     })
     // app.get( "/home", ( req:express.Request, res :express.Response  ) => {

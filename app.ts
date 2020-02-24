@@ -16,11 +16,12 @@ app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded())
 app.use(morgan('dev'));
+var _favicon =app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.set('view engine', 'ejs');
 app.use('/assets',express.static('assets'));
 app.set('views', path.join(__dirname, 'views'));
 // app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 
 //connection to database
 mongoose.connect(config.dbUrl);
@@ -35,8 +36,17 @@ db.once('open', () => {
     setRoutes(app)
     app.get('/',(req,res)=>{
         res.render( "index" );
+        _favicon(req, res, function onNext (err) {
+            if (err) return console.error(err)
+        
+            // continue to process the request here, etc.
+        
+            res.statusCode = 404
+            res.end('oops')
+          })
 
     })
+   
     // app.get( "/home", ( req:express.Request, res :express.Response  ) => {
     //     // return res.json({ message:"welcome" });
     //     res.render( "/index" ); 

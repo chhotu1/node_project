@@ -5,6 +5,8 @@ import setRoutes from "./route";
 import * as bodyParser from 'body-parser';
 import * as morgan from 'morgan';
 import * as nodemailer from 'nodemailer'; 
+import * as favicon from 'serve-favicon'
+// var favicon = require('serve-favicon');
 import * as path from 'path';
 const app = express();
 app.set('port', (process.env.PORT || 3002));
@@ -17,6 +19,7 @@ app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.use('/assets',express.static('assets'));
 app.set('views', path.join(__dirname, 'views'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 //connection to database
 mongoose.connect(config.dbUrl);

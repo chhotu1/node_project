@@ -5,15 +5,22 @@ import setRoutes from "./route";
 import * as bodyParser from 'body-parser';
 import * as morgan from 'morgan';
 import * as nodemailer from 'nodemailer'; 
-import * as favicon from 'serve-favicon'
+import * as cors from 'cors';
+// import * as favicon from 'serve-favicon';
 import * as finalhandler from 'finalhandler';
 import * as http from 'http';
+var favicon = require('serve-favicon');
 // var favicon = require('serve-favicon');
 import * as path from 'path';
-var _favicon = favicon(path.join(__dirname, 'public', 'favicon.ico'))
+// var _favicon = favicon(path.join(__dirname, 'public', 'favicon.ico'))
 const app = express();
 app.set('port', (process.env.PORT || 3002));
 // const port = 8080;
+
+app.use(cors());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(bodyParser.json());
@@ -25,9 +32,6 @@ app.use('/assets',express.static('assets'));
 app.set('views', path.join(__dirname, 'views'));
 // app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-
-
-//connection to database
 mongoose.connect(config.dbUrl);
 mongoose.set('useFindAndModify', false);
 const db = mongoose.connection;
@@ -35,20 +39,7 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
-var _favicon = favicon(path.join(__dirname, 'public', 'favicon.ico'))
-
-var server = http.createServer(function onRequest (req, res) {
-  var done = finalhandler(req, res)
-
-  _favicon(req, res, function onNext (err) {
-    if (err) return done(err)
-
-    // continue to process the request here, etc.
-
-    res.statusCode = 404
-    res.end('oops')
-  })
-})
+// var _favicon = favicon(path.join(__dirname, 'public', 'favicon.ico'))
 
 
 db.once('open', () => {
@@ -66,13 +57,12 @@ db.once('open', () => {
     // app.listen( port, () => {
     //     console.log( `server started at http://localhost:${ port }` );
     // });
+    app.use('/', express.static(path.join(__dirname, '/public')));
+
 
     app.listen(app.get('port'), () => {
         console.log('server listening on port ' + app.get('port'));
     });
-
-    
-    
 
 });
 

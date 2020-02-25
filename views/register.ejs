@@ -1,11 +1,11 @@
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header model-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <h5 class="modal-title" id="registerModalLabel">Register</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="" method="post">
@@ -14,13 +14,22 @@
                         <input type="text" class="form-control text-size" id="username" placeholder="Username">
                     </div>
                     <div class="form-group formGroup">
+                        <label for="name" class="label-size">Name</label>
+                        <input type="text" class="form-control text-size" id="name" placeholder="Name">
+                    </div>
+                    <div class="form-group formGroup">
+                        <label for="email" class="label-size">Email address</label>
+                        <input type="email" class="form-control text-size" id="email" placeholder="Email">
+                    </div>
+                    <div class="form-group formGroup">
+                        <label for="mobile" class="label-size">Mobile</label>
+                        <input type="text" class="form-control text-size" id="mobile" placeholder="Enter mobile">
+                    </div>
+                    <div class="form-group formGroup">
                         <label for="password" class="label-size">Password</label>
                         <input type="text" class="form-control text-size" id="password" placeholder="password">
                     </div>
                 </form>
-                <button class="loginBtn loginBtn--facebook"> Login with Facebook </button>
-
-                <button class="loginBtn loginBtn--google">   Login with Google  </button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

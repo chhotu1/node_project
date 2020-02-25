@@ -21,7 +21,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

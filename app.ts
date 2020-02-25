@@ -20,7 +20,6 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 // app.use('/', express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded())
 app.use(morgan('dev'));
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.set('view engine', 'ejs');
@@ -40,6 +39,7 @@ db.once('open', () => {
     })
 
     app.use('/', express.static(path.join(__dirname, '/public')));
+    // app.use(express.favicon(__dirname + '/public/favicon.ico'));
     app.use('/assets',express.static('assets'));
 
     app.listen(app.get('port'), () => {

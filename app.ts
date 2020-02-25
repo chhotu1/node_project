@@ -30,6 +30,9 @@ mongoose.set('useFindAndModify', false);
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
+app.use('/', express.static(path.join(__dirname, '/public')));
+// app.use(express.favicon(__dirname + '/public/favicon.ico'));
+app.use('/assets',express.static('assets'));
 
 db.once('open', () => {
     console.log('Connected to MongoDB');
@@ -37,11 +40,6 @@ db.once('open', () => {
     app.get('/',(req,res)=>{
         res.render( "index" );
     })
-
-    app.use('/', express.static(path.join(__dirname, '/public')));
-    // app.use(express.favicon(__dirname + '/public/favicon.ico'));
-    app.use('/assets',express.static('assets'));
-
     app.listen(app.get('port'), () => {
         console.log('server listening on port ' + app.get('port'));
     });
